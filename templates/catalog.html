@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Catalog{% endblock title %}
+
+{% block content %}
+{% include "nav.html" %}
+{% include "flash.html" %}
+
+<!-- Page Content -->
+<section id="catalog" class="section">
+
+    <div class="container">
+
+        <div class="row">
+
+            {% include "categories.html" %}
+
+            <div class="col-md-9">
+                <h4 class="padding-bottom-19">Latest Items</h4>
+                {% for i in items %}
+                <div class="thumbnail">
+                    <div class="col-md-5 caption-full">
+                        <img class="img-responsive img-left" src="{{ i.picture }}" alt="{{ i.name }}" onerror="this.src='http://res.cloudinary.com/dwibukj04/image/upload/v1520215977/nophoto.jpg'">
+                    </div>
+	                <div class="container-fluid bg-grey">
+					  <h4 class="text-center">{{ i.name }}</h4>
+					  <a href = "{{url_for('showItem', category_name = i.category.name, item_name = i.name)}}" class="text-center">case info</a>		  
+					  <div class="row">
+					    <div class="col-sm-5 text-left">
+					      <p><span class="glyphicon glyphicon-folder-open"></span> Case Number: {{ i.name }}</p>
+					      <p><span class="glyphicon glyphicon-eye-open"></span> Case Manager: {{ i.user.name }}</p>
+					      <p><span class="glyphicon glyphicon-calendar"></span> {{ i.date }}</p> 
+					    </div>
+					  </div>
+					</div>               	                
+	            </div>
+                {% endfor %}
+            </div>
+
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+</section>
+<!-- /.section -->
+{% endblock %}

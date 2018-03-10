@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% include "nav.html" %}
+{% include "flash.html" %}
+
+
+<!-- Page Content -->
+<section id="showItem" class="section">
+	<div class="container">
+		<div class="row">
+
+            {% include "categories.html" %}
+
+            
+			<div class="col-md-9">
+				<h6 class="pull-right">
+					<a href = "{{url_for('deleteCategory', category_name = category)}}">Delete Category</a>
+				</h6>
+				<h6 class="padding-bottom-26">Items (
+					<strong>{{count}}</strong>)
+				</h6>
+                {% for i in items %}
+               
+				<div class="col-md-9 thumbnail text-center">
+					<div class="col-md-5">
+						<img class="img-responsive img-left" src="{{ i.picture }}" alt="{{ i.name }}" onerror="this.src='http://res.cloudinary.com/dwibukj04/image/upload/v1520215977/nophoto.jpg'">
+						</div>
+						<div class="container-fluid bg-grey">
+							<h4 class="text-center">{{ i.name }}</h4>
+							<a href = "{{url_for('showItem', category_name = i.category.name, item_name = i.name)}}" class="text-center">case info</a>
+							<div class="row">
+								<div class="col-sm-5 text-left">
+									<p>
+										<span class="glyphicon glyphicon-folder-open"></span> Case Number: {{ i.name }}
+									</p>
+									<p>
+										<span class="glyphicon glyphicon-eye-open"></span> Case Manager: {{ i.user.name }}
+									</p>
+									<p>
+										<span class="glyphicon glyphicon-calendar"></span> {{ i.date }}
+									</p>
+								</div>
+								<div class="col-sm-7">
+									<textarea class="form-control" id="description" name="description" placeholder="description" rows="5">{{ i.description }}</textarea>
+									<br>
+										<div class="row">
+											<div class="col-sm-12 form-group"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+                {% endfor %}
+            
+					</div>
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /.container -->
+		</section>
+		<!-- /.section -->
+
+{% endblock %}
