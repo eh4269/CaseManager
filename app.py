@@ -468,4 +468,4 @@ def dated_url_for(endpoint, **values):
 if __name__ == '__main__':
     app.secret_key = '0wMz4ZwoejO77xT5AA6ZR-f-'
     app.debug = True
-    app.run(host='localhost', port=9001)
+    app.run(host='0.0.0.0', port=9001)
